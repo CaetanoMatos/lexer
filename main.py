@@ -6,7 +6,8 @@ tokens = [
     'ID', 'NUMBER',
     'OP', 'LPAREN', 'RPAREN', 'EQUALS'
 ]
-#palavras reservadas
+
+# palavras reservadas
 t_DERIVAR = r'derivar'
 t_INTEGRAR = r'integrar'
 t_ATRIBUIR = r'atribuir'
@@ -16,10 +17,8 @@ t_LPAREN = r'\('
 t_RPAREN = r'\)'
 t_EQUALS = r'='
 
-# variaveis / simbolos
 def t_ID(t):
     r'[a-zA-Z_][a-zA-Z0-9_]*'
-    # ve se é palavra-chave
     if t.value == 'derivar':
         t.type = 'DERIVAR'
     elif t.value == 'integrar':
@@ -30,26 +29,26 @@ def t_ID(t):
         t.type = 'MOSTRAR'
     return t
 
-# confere se é numero
 def t_NUMBER(t):
     r'\d+'
     t.value = int(t.value)
     return t
 
-# ignorar os espaços e tabulações pra evitar confusão
 t_ignore = ' \t'
 
-# caso encontre algum caractere que nao corresponda a nenhuma regra gramatical, chama essa função
 def t_error(t):
     print(f"Caracter ilegal: {t.value[0]}")
     t.lexer.skip(1)
 
-# lexer
 lexer = lex.lex()
 
-# exemplo teste
-entrada = "atribuir resultado = derivar x + 2 * integrar y"
+print("Digite uma expressão para análise léxica.")
+print("Exemplo de entrada: atribuir resultado = derivar x + 2 * integrar y")
+entrada = input("Expressão: ")
+
 lexer.input(entrada)
 
+print(f"{'Tipo':12} {'Valor':15} {'Linha':5} {'Coluna':6}")
+print("-" * 40)
 for tok in lexer:
-    print(tok)
+    print(f"{tok.type:12} {str(tok.value):15} {tok.lineno:<5} {tok.lexpos:<6}")
