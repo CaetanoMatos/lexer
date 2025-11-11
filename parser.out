@@ -1,0 +1,254 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> comando
+Rule 1     comando -> ATRIBUIR ID EQUALS expressao
+Rule 2     comando -> MOSTRAR expressao
+Rule 3     comando -> DERIVAR expressao
+Rule 4     comando -> INTEGRAR expressao
+Rule 5     expressao -> expressao OP termo
+Rule 6     expressao -> termo
+Rule 7     termo -> ID
+Rule 8     termo -> NUMBER
+Rule 9     termo -> LPAREN expressao RPAREN
+
+Terminals, with rules where they appear
+
+ATRIBUIR             : 1
+DERIVAR              : 3
+EQUALS               : 1
+ID                   : 1 7
+INTEGRAR             : 4
+LPAREN               : 9
+MOSTRAR              : 2
+NUMBER               : 8
+OP                   : 5
+RPAREN               : 9
+error                : 
+
+Nonterminals, with rules where they appear
+
+comando              : 0
+expressao            : 1 2 3 4 5 9
+termo                : 5 6
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . comando
+    (1) comando -> . ATRIBUIR ID EQUALS expressao
+    (2) comando -> . MOSTRAR expressao
+    (3) comando -> . DERIVAR expressao
+    (4) comando -> . INTEGRAR expressao
+
+    ATRIBUIR        shift and go to state 2
+    MOSTRAR         shift and go to state 3
+    DERIVAR         shift and go to state 4
+    INTEGRAR        shift and go to state 5
+
+    comando                        shift and go to state 1
+
+state 1
+
+    (0) S' -> comando .
+
+
+
+state 2
+
+    (1) comando -> ATRIBUIR . ID EQUALS expressao
+
+    ID              shift and go to state 6
+
+
+state 3
+
+    (2) comando -> MOSTRAR . expressao
+    (5) expressao -> . expressao OP termo
+    (6) expressao -> . termo
+    (7) termo -> . ID
+    (8) termo -> . NUMBER
+    (9) termo -> . LPAREN expressao RPAREN
+
+    ID              shift and go to state 9
+    NUMBER          shift and go to state 10
+    LPAREN          shift and go to state 11
+
+    expressao                      shift and go to state 7
+    termo                          shift and go to state 8
+
+state 4
+
+    (3) comando -> DERIVAR . expressao
+    (5) expressao -> . expressao OP termo
+    (6) expressao -> . termo
+    (7) termo -> . ID
+    (8) termo -> . NUMBER
+    (9) termo -> . LPAREN expressao RPAREN
+
+    ID              shift and go to state 9
+    NUMBER          shift and go to state 10
+    LPAREN          shift and go to state 11
+
+    expressao                      shift and go to state 12
+    termo                          shift and go to state 8
+
+state 5
+
+    (4) comando -> INTEGRAR . expressao
+    (5) expressao -> . expressao OP termo
+    (6) expressao -> . termo
+    (7) termo -> . ID
+    (8) termo -> . NUMBER
+    (9) termo -> . LPAREN expressao RPAREN
+
+    ID              shift and go to state 9
+    NUMBER          shift and go to state 10
+    LPAREN          shift and go to state 11
+
+    expressao                      shift and go to state 13
+    termo                          shift and go to state 8
+
+state 6
+
+    (1) comando -> ATRIBUIR ID . EQUALS expressao
+
+    EQUALS          shift and go to state 14
+
+
+state 7
+
+    (2) comando -> MOSTRAR expressao .
+    (5) expressao -> expressao . OP termo
+
+    $end            reduce using rule 2 (comando -> MOSTRAR expressao .)
+    OP              shift and go to state 15
+
+
+state 8
+
+    (6) expressao -> termo .
+
+    OP              reduce using rule 6 (expressao -> termo .)
+    $end            reduce using rule 6 (expressao -> termo .)
+    RPAREN          reduce using rule 6 (expressao -> termo .)
+
+
+state 9
+
+    (7) termo -> ID .
+
+    OP              reduce using rule 7 (termo -> ID .)
+    $end            reduce using rule 7 (termo -> ID .)
+    RPAREN          reduce using rule 7 (termo -> ID .)
+
+
+state 10
+
+    (8) termo -> NUMBER .
+
+    OP              reduce using rule 8 (termo -> NUMBER .)
+    $end            reduce using rule 8 (termo -> NUMBER .)
+    RPAREN          reduce using rule 8 (termo -> NUMBER .)
+
+
+state 11
+
+    (9) termo -> LPAREN . expressao RPAREN
+    (5) expressao -> . expressao OP termo
+    (6) expressao -> . termo
+    (7) termo -> . ID
+    (8) termo -> . NUMBER
+    (9) termo -> . LPAREN expressao RPAREN
+
+    ID              shift and go to state 9
+    NUMBER          shift and go to state 10
+    LPAREN          shift and go to state 11
+
+    expressao                      shift and go to state 16
+    termo                          shift and go to state 8
+
+state 12
+
+    (3) comando -> DERIVAR expressao .
+    (5) expressao -> expressao . OP termo
+
+    $end            reduce using rule 3 (comando -> DERIVAR expressao .)
+    OP              shift and go to state 15
+
+
+state 13
+
+    (4) comando -> INTEGRAR expressao .
+    (5) expressao -> expressao . OP termo
+
+    $end            reduce using rule 4 (comando -> INTEGRAR expressao .)
+    OP              shift and go to state 15
+
+
+state 14
+
+    (1) comando -> ATRIBUIR ID EQUALS . expressao
+    (5) expressao -> . expressao OP termo
+    (6) expressao -> . termo
+    (7) termo -> . ID
+    (8) termo -> . NUMBER
+    (9) termo -> . LPAREN expressao RPAREN
+
+    ID              shift and go to state 9
+    NUMBER          shift and go to state 10
+    LPAREN          shift and go to state 11
+
+    expressao                      shift and go to state 17
+    termo                          shift and go to state 8
+
+state 15
+
+    (5) expressao -> expressao OP . termo
+    (7) termo -> . ID
+    (8) termo -> . NUMBER
+    (9) termo -> . LPAREN expressao RPAREN
+
+    ID              shift and go to state 9
+    NUMBER          shift and go to state 10
+    LPAREN          shift and go to state 11
+
+    termo                          shift and go to state 18
+
+state 16
+
+    (9) termo -> LPAREN expressao . RPAREN
+    (5) expressao -> expressao . OP termo
+
+    RPAREN          shift and go to state 19
+    OP              shift and go to state 15
+
+
+state 17
+
+    (1) comando -> ATRIBUIR ID EQUALS expressao .
+    (5) expressao -> expressao . OP termo
+
+    $end            reduce using rule 1 (comando -> ATRIBUIR ID EQUALS expressao .)
+    OP              shift and go to state 15
+
+
+state 18
+
+    (5) expressao -> expressao OP termo .
+
+    OP              reduce using rule 5 (expressao -> expressao OP termo .)
+    $end            reduce using rule 5 (expressao -> expressao OP termo .)
+    RPAREN          reduce using rule 5 (expressao -> expressao OP termo .)
+
+
+state 19
+
+    (9) termo -> LPAREN expressao RPAREN .
+
+    OP              reduce using rule 9 (termo -> LPAREN expressao RPAREN .)
+    $end            reduce using rule 9 (termo -> LPAREN expressao RPAREN .)
+    RPAREN          reduce using rule 9 (termo -> LPAREN expressao RPAREN .)
+
