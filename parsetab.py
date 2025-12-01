@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'ATRIBUIR DERIVAR EQUALS ID INTEGRAR LPAREN MOSTRAR NUMBER OP RPARENcomando : ATRIBUIR ID EQUALS expressaocomando : MOSTRAR expressaocomando : DERIVAR expressaocomando : INTEGRAR expressaoexpressao : expressao OP termoexpressao : termotermo : IDtermo : NUMBERtermo : LPAREN expressao RPAREN'
+_lr_signature = 'ATRIBUIR DERIVAR EQUALS ID INTEGRAR LPAREN MOSTRAR NUMBER OP RPARENcomando : ATRIBUIR ID EQUALS expressaocomando : MOSTRAR expressaocomando : DERIVAR expressaocomando : INTEGRAR expressaoexpressao : expressao OP termoexpressao : termotermo : IDtermo : NUMBERtermo : LPAREN expressao RPARENcomando : expressao'
     
-_lr_action_items = {'ATRIBUIR':([0,],[2,]),'MOSTRAR':([0,],[3,]),'DERIVAR':([0,],[4,]),'INTEGRAR':([0,],[5,]),'$end':([1,7,8,9,10,12,13,17,18,19,],[0,-2,-6,-7,-8,-3,-4,-1,-5,-9,]),'ID':([2,3,4,5,11,14,15,],[6,9,9,9,9,9,9,]),'NUMBER':([3,4,5,11,14,15,],[10,10,10,10,10,10,]),'LPAREN':([3,4,5,11,14,15,],[11,11,11,11,11,11,]),'EQUALS':([6,],[14,]),'OP':([7,8,9,10,12,13,16,17,18,19,],[15,-6,-7,-8,15,15,15,15,-5,-9,]),'RPAREN':([8,9,10,16,18,19,],[-6,-7,-8,19,-5,-9,]),}
+_lr_action_items = {'ATRIBUIR':([0,],[2,]),'MOSTRAR':([0,],[5,]),'DERIVAR':([0,],[6,]),'INTEGRAR':([0,],[7,]),'ID':([0,2,5,6,7,10,12,17,],[3,11,3,3,3,3,3,3,]),'NUMBER':([0,5,6,7,10,12,17,],[9,9,9,9,9,9,9,]),'LPAREN':([0,5,6,7,10,12,17,],[10,10,10,10,10,10,10,]),'$end':([1,3,4,8,9,13,14,15,18,19,20,],[0,-7,-10,-6,-8,-2,-3,-4,-5,-9,-1,]),'OP':([3,4,8,9,13,14,15,16,18,19,20,],[-7,12,-6,-8,12,12,12,12,-5,-9,12,]),'RPAREN':([3,8,9,16,18,19,],[-7,-6,-8,19,-5,-9,]),'EQUALS':([11,],[17,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'comando':([0,],[1,]),'expressao':([3,4,5,11,14,],[7,12,13,16,17,]),'termo':([3,4,5,11,14,15,],[8,8,8,8,8,18,]),}
+_lr_goto_items = {'comando':([0,],[1,]),'expressao':([0,5,6,7,10,17,],[4,13,14,15,16,20,]),'termo':([0,5,6,7,10,12,17,],[8,8,8,8,8,18,8,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,13 +27,14 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> comando","S'",1,None,None,None),
-  ('comando -> ATRIBUIR ID EQUALS expressao','comando',4,'p_comando_atribuir','main.py',54),
-  ('comando -> MOSTRAR expressao','comando',2,'p_comando_mostrar','main.py',58),
-  ('comando -> DERIVAR expressao','comando',2,'p_comando_derivar','main.py',62),
-  ('comando -> INTEGRAR expressao','comando',2,'p_comando_integrar','main.py',66),
-  ('expressao -> expressao OP termo','expressao',3,'p_expressao_operacao','main.py',70),
-  ('expressao -> termo','expressao',1,'p_expressao_termo','main.py',74),
-  ('termo -> ID','termo',1,'p_termo_id','main.py',78),
-  ('termo -> NUMBER','termo',1,'p_termo_number','main.py',82),
-  ('termo -> LPAREN expressao RPAREN','termo',3,'p_termo_parenteses','main.py',86),
+  ('comando -> ATRIBUIR ID EQUALS expressao','comando',4,'p_comando_atribuir','main.py',55),
+  ('comando -> MOSTRAR expressao','comando',2,'p_comando_mostrar','main.py',59),
+  ('comando -> DERIVAR expressao','comando',2,'p_comando_derivar','main.py',63),
+  ('comando -> INTEGRAR expressao','comando',2,'p_comando_integrar','main.py',67),
+  ('expressao -> expressao OP termo','expressao',3,'p_expressao_operacao','main.py',71),
+  ('expressao -> termo','expressao',1,'p_expressao_termo','main.py',75),
+  ('termo -> ID','termo',1,'p_termo_id','main.py',79),
+  ('termo -> NUMBER','termo',1,'p_termo_number','main.py',83),
+  ('termo -> LPAREN expressao RPAREN','termo',3,'p_termo_parenteses','main.py',87),
+  ('comando -> expressao','comando',1,'p_comando_expressao','main.py',91),
 ]
